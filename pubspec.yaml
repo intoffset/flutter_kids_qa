@@ -57,6 +57,7 @@ dependencies:
   json_serializable: ^6.6.1
   isar: ^3.0.5
   isar_flutter_libs: ^3.0.5
+  dart_openai: ^1.9.1
 
 dev_dependencies:
   flutter_test:
