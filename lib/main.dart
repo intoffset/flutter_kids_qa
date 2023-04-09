@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_kids_qa/repository/theme_mode_reopsitory.dart';
 import 'package:flutter_kids_qa/screen/home_screen.dart';
+import 'package:flutter_kids_qa/service/openai_service.dart';
 import 'package:flutter_kids_qa/shared_preferences/shared_preferences_instance.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load();
+  OpenAIService.initialize(dotenv.env['OPENAI_API_KEY']!);
   await SharedPreferencesInstance.initialize();
   runApp(
     const ProviderScope(
