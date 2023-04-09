@@ -6,6 +6,7 @@ import 'package:flutter_kids_qa/screen/answer_screen.dart';
 import 'package:flutter_kids_qa/screen/home_screen.dart';
 import 'package:flutter_kids_qa/service/openai_service.dart';
 import 'package:flutter_kids_qa/shared_preferences/shared_preferences_instance.dart';
+import 'package:flutter_kids_qa/transition/slide_transition_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -58,13 +59,15 @@ final _router = GoRouter(
     GoRoute(
       name: HomeScreen.name,
       path: '/',
-      builder: (context, state) => const HomeScreen(),
+      pageBuilder: (context, state) => SlideTransitionPage(child: const HomeScreen()),
       routes: [
         GoRoute(
           name: AnswerScreen.name,
           path: 'answer',
-          builder: (context, state) => AnswerScreen(
-            query: state.queryParams['query']!,
+          pageBuilder: (context, state) => SlideTransitionPage(
+            child: AnswerScreen(
+              query: state.queryParams['query']!,
+            ),
           ),
         ),
       ],
