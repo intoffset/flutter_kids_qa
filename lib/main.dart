@@ -2,6 +2,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_kids_qa/repository/theme_mode_reopsitory.dart';
+import 'package:flutter_kids_qa/screen/answer_screen.dart';
 import 'package:flutter_kids_qa/screen/home_screen.dart';
 import 'package:flutter_kids_qa/service/openai_service.dart';
 import 'package:flutter_kids_qa/shared_preferences/shared_preferences_instance.dart';
@@ -58,7 +59,15 @@ final _router = GoRouter(
       name: HomeScreen.name,
       path: '/',
       builder: (context, state) => const HomeScreen(),
-      routes: [],
+      routes: [
+        GoRoute(
+          name: AnswerScreen.name,
+          path: 'answer',
+          builder: (context, state) => AnswerScreen(
+            query: state.queryParams['query']!,
+          ),
+        ),
+      ],
     ),
   ],
 );
