@@ -51,7 +51,7 @@ class AnswerWidget extends ConsumerWidget {
     final viewModel = ref.watch(answerViewModelProvider(query));
     return Text(
       viewModel.answer,
-      style: Theme.of(context).textTheme.headlineMedium,
+      style: Theme.of(context).textTheme.headlineMedium?.copyWith(height: 1.5),
     );
   }
 }

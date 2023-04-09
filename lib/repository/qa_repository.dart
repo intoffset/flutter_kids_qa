@@ -40,7 +40,7 @@ class QaRepository {
 
     return moderationStream.switchMap((flagged) {
       if (flagged) {
-        return Stream.fromIterable(['この質問は自分や他人を傷つける可能性があるため、回答できません。']);
+        return Stream.fromIterable(['この質問は自分や他人を傷つける危険があるため回答できません。']);
       }
       return answerStream;
     });

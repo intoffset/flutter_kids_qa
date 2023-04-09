@@ -141,8 +141,8 @@ List<Widget> _buildQueryButtons(String Function() keywordBuilder, void Function(
       onPressed: () => onPressed('${keywordBuilder()}ってしてもいいの？'),
     ),
     OutlinedButton(
-      child: const Text('ってどうしたらできる？'),
-      onPressed: () => onPressed('${keywordBuilder()}ってどうしたらできる？'),
+      child: const Text('のやりかたをおしえて'),
+      onPressed: () => onPressed('${keywordBuilder()}のやりかたをおしえて'),
     ),
   ];
 }
