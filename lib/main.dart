@@ -1,5 +1,6 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_kids_qa/repository/theme_mode_reopsitory.dart';
 import 'package:flutter_kids_qa/screen/home_screen.dart';
 import 'package:flutter_kids_qa/shared_preferences/shared_preferences_instance.dart';
@@ -10,6 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await dotenv.load();
   await SharedPreferencesInstance.initialize();
   runApp(
     const ProviderScope(
@@ -21,12 +23,11 @@ Future<void> main() async {
 class KidsQaApp extends ConsumerWidget {
   const KidsQaApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DynamicColorBuilder(
       builder: (lightColorSchema, darkColorSchema) => MaterialApp.router(
-        title: '',
+        title: 'Flutter Kids QA',
         theme: _buildTheme(Brightness.light, lightColorSchema),
         darkTheme: _buildTheme(Brightness.dark, darkColorSchema),
         themeMode: ref.watch(themeModeProvider),
