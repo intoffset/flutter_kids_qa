@@ -127,22 +127,17 @@ class HomeDrawer extends ConsumerWidget {
 }
 
 List<Widget> _buildQueryButtons(String Function() keywordBuilder, void Function(String) onPressed) {
+  final suffixes = [
+    'ってなに？',
+    'ってなんで？',
+    'ってどうやる？',
+    'ってどうつくる？',
+  ];
   return [
-    OutlinedButton(
-      child: const Text('ってなに？'),
-      onPressed: () => onPressed('${keywordBuilder()}ってなに？'),
-    ),
-    OutlinedButton(
-      child: const Text('ってなんで？'),
-      onPressed: () => onPressed('${keywordBuilder()}ってなんで？'),
-    ),
-    OutlinedButton(
-      child: const Text('ってしてもいいの？'),
-      onPressed: () => onPressed('${keywordBuilder()}ってしてもいいの？'),
-    ),
-    OutlinedButton(
-      child: const Text('のやりかたをおしえて'),
-      onPressed: () => onPressed('${keywordBuilder()}のやりかたをおしえて'),
-    ),
+    for (final suffix in suffixes)
+      OutlinedButton(
+        child: Text(suffix),
+        onPressed: () => onPressed('${keywordBuilder()}$suffix'),
+      ),
   ];
 }
