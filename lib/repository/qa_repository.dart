@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:dart_openai/openai.dart';
 import 'package:flutter_kids_qa/service/openai_service.dart';
-import 'package:flutter_kids_qa/util/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stream_transform/stream_transform.dart';
 
