@@ -32,4 +32,10 @@ class OpenAIService {
     );
     return stream;
   }
+
+  Future<OpenAIModerationModel> moderate(String input) {
+    return OpenAI.instance.moderation.create(
+      input: input,
+    );
+  }
 }
