@@ -1,5 +1,4 @@
 import 'package:dart_openai/openai.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OpenAiService {
   static const defaultChatModel = 'gpt-3.5-turbo-0301';
