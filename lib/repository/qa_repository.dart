@@ -29,20 +29,23 @@ class QaRepository {
       OpenAIChatCompletionChoiceMessageModel(role: OpenAIChatMessageRole.user, content: query),
     ];
 
-    String answer = '';
-    final answerStream = openAiService.postMessageStream(messages).map((response) {
+    final answerStream = openAiService.postMessageStream(messages).scan('', (answerPrev, response) {
       final deltaContent = response.choices.firstOrNull?.delta.content ?? '';
-      answer = answer + deltaContent;
+      final answer = answerPrev + deltaContent;
       return answer;
     });
 
+    return answerStream;
+  }
+
+  Stream<String> getAnswerStreamWithModeration(String query) {
     final moderationStream = _moderate(query).asStream();
 
     return moderationStream.switchMap((flagged) {
       if (flagged) {
         return Stream.fromIterable(['この質問は自分や他人を傷つける危険があるため回答できません。']);
       }
-      return answerStream;
+      return getAnswerStream(query);
     });
   }
 }

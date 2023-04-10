@@ -9,7 +9,7 @@ class AnswerViewModelNotifier extends StateNotifier<AnswerViewModel> {
       : _qaReporitory = qaRepository,
         _query = query,
         super(AnswerViewModel.empty()) {
-    _subscription = _qaReporitory.getAnswerStream(query).listen((answer) {
+    _subscription = _qaReporitory.getAnswerStreamWithModeration(query).listen((answer) {
       state = state.copyWith(answer: answer);
     });
   }
