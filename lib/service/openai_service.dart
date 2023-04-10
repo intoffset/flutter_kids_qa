@@ -1,13 +1,14 @@
 import 'package:dart_openai/openai.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OpenAIService {
+class OpenAiService {
   static const defaultChatModel = 'gpt-3.5-turbo-0301';
 
-  static final OpenAIService _instance = OpenAIService._internal();
+  static final OpenAiService _instance = OpenAiService._internal();
 
-  factory OpenAIService() => _instance;
+  factory OpenAiService() => _instance;
 
-  OpenAIService._internal();
+  OpenAiService._internal();
 
   static initialize(String apiKey) {
     OpenAI.apiKey = apiKey;
