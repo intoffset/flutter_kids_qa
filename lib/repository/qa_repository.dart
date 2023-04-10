@@ -9,7 +9,7 @@ import 'package:stream_transform/stream_transform.dart';
 class QaRepository {
   QaRepository();
 
-  final openAiService = OpenAiService();
+  final openAiService = OpenAIService();
 
   Future<bool> _moderate(String input) {
     return openAiService.moderate(input).then((value) {

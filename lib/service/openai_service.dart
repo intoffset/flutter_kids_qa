@@ -1,13 +1,13 @@
 import 'package:dart_openai/openai.dart';
 
-class OpenAiService {
+class OpenAIService {
   static const defaultChatModel = 'gpt-3.5-turbo-0301';
 
-  static final OpenAiService _instance = OpenAiService._internal();
+  static final OpenAIService _instance = OpenAIService._internal();
 
-  factory OpenAiService() => _instance;
+  factory OpenAIService() => _instance;
 
-  OpenAiService._internal();
+  OpenAIService._internal();
 
   static initialize(String apiKey) {
     OpenAI.apiKey = apiKey;

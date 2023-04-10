@@ -15,7 +15,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load();
-  OpenAiService.initialize(dotenv.env['OPENAI_API_KEY']!);
+  OpenAIService.initialize(dotenv.env['OPENAI_API_KEY']!);
   await SharedPreferencesInstance.initialize();
   runApp(
     const ProviderScope(
