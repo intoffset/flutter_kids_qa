@@ -66,7 +66,7 @@ final _router = GoRouter(
           path: 'answer',
           pageBuilder: (context, state) => SlideTransitionPage(
             child: AnswerScreen(
-              query: state.queryParams['query']!,
+              query: state.uri.queryParameters['query']!,
             ),
           ),
         ),

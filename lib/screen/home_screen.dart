@@ -68,7 +68,7 @@ class QuestionForm extends HookConsumerWidget {
                     FocusManager.instance.primaryFocus?.unfocus();
                     context.goNamed(
                       AnswerScreen.name,
-                      queryParams: {'query': query},
+                      queryParameters: {'query': query},
                     );
                   }
                 },
