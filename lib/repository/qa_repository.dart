@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
-import 'package:dart_openai/openai.dart';
+import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter_kids_qa/service/openai_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stream_transform/stream_transform.dart';
@@ -25,13 +25,22 @@ class QaRepository {
     final messages = [
       OpenAIChatCompletionChoiceMessageModel(
         role: OpenAIChatMessageRole.system,
-        content: 'あなたは小学生向けのアシスタントです。この後の質問には、漢字を一切使わずに子供向けにわかりやすく答えてください。',
+        content: [
+          OpenAIChatCompletionChoiceMessageContentItemModel.text(
+            'あなたは小学生向けのアシスタントです。この後の質問には、漢字を一切使わずに子供向けにわかりやすく答えてください。',
+          )
+        ],
       ),
-      OpenAIChatCompletionChoiceMessageModel(role: OpenAIChatMessageRole.user, content: query),
+      OpenAIChatCompletionChoiceMessageModel(
+        role: OpenAIChatMessageRole.user,
+        content: [
+          OpenAIChatCompletionChoiceMessageContentItemModel.text(query),
+        ],
+      ),
     ];
 
     final answerStream = openAiService.postMessageStream(messages).scan('', (answerPrev, response) {
-      final deltaContent = response.choices.firstOrNull?.delta.content ?? '';
+      final deltaContent = response.choices.first.delta.content?.first.text ?? '';
       final answer = answerPrev + deltaContent;
       return answer;
     });

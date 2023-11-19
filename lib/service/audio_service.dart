@@ -1,7 +1,7 @@
 import 'package:record/record.dart';
 
 class RecordService {
-  static final Record _record = Record();
+  static final AudioRecorder _recorder = AudioRecorder();
 
   static final RecordService _instance = RecordService._internal();
 
@@ -9,17 +9,17 @@ class RecordService {
 
   RecordService._internal();
 
-  void startRecord(String? path) async {
-    if (await _record.hasPermission()) {
-      await _record.start(path: path);
+  void startRecord(String path) async {
+    if (await _recorder.hasPermission()) {
+      await _recorder.start(const RecordConfig(), path: path);
     }
   }
 
   Future<String?> stopRecord() async {
-    return await _record.stop();
+    return await _recorder.stop();
   }
 
-  Future<bool> get isRecording => _record.isRecording();
+  Future<bool> get isRecording => _recorder.isRecording();
 
-  Stream<RecordState> get recordStateStream => _record.onStateChanged();
+  Stream<RecordState> get recordStateStream => _recorder.onStateChanged();
 }

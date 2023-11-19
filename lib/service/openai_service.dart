@@ -1,4 +1,4 @@
-import 'package:dart_openai/openai.dart';
+import 'package:dart_openai/dart_openai.dart';
 
 class OpenAIService {
   static const defaultChatModel = 'gpt-3.5-turbo-0301';
